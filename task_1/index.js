@@ -7,7 +7,6 @@ console.log("Let's rock")
 **/
 const permanent = [ 'groupId', 'service', 'formatSize', 'ca'];
 
-
 /*
 Получить уникальные ID, не включать id исключений
 **/
@@ -35,7 +34,6 @@ function getUniqueId(data) {
 /*
 Получить массив данных, исключив указанные поля
 **/
-
 function getCorrectedData(initial, exclusion) {
   const result = [];
   initial.forEach((item) => {
@@ -44,6 +42,9 @@ function getCorrectedData(initial, exclusion) {
   return result;
 }
 
+/*
+Декодирование - расшифровка полей
+**/
 function decode(data) {
   const result = [];
 
