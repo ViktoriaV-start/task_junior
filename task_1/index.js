@@ -2,9 +2,15 @@ import {encoded, translations} from './data.js'
 
 console.log("Let's rock")
 
-
+/*
+Исключения
+**/
 const permanent = [ 'groupId', 'service', 'formatSize', 'ca'];
 
+
+/*
+Получить уникальные ID, не включать id исключений
+**/
 function getUniqueId(data) {
 
   let values = [];
@@ -26,6 +32,10 @@ function getUniqueId(data) {
   return uniqueValues.sort((a, b) => a-b);
 }
 
+/*
+Получить массив данных, исключив указанные поля
+**/
+
 function getCorrectedData(initial, exclusion) {
   const result = [];
   initial.forEach((item) => {
@@ -41,7 +51,7 @@ function decode(data) {
     let decodedItem = {};
 
     for (let key in item) {
-      decodedItem[key] = translations[item[key]] ?? 'не определено';
+      decodedItem[key] = translations[item[key]] ?? item[key];
     }
     result.push(decodedItem);
   });
@@ -50,6 +60,6 @@ function decode(data) {
 
 const cleanedData = getCorrectedData(encoded, permanent);
 const uniqueId = getUniqueId(cleanedData);
-const decoded = decode(cleanedData);
+const decoded = decode(encoded);
 
 console.log(decoded, uniqueId);
